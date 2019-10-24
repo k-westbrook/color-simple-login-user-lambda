@@ -4,7 +4,7 @@ const docClient = new AWS.DynamoDB.DocumentClient({ region: "us-west-1" });
 
 exports.handler = (event, context, callback) => {
   const params = {
-    Item: {
+    Key: {
       email: event.email,
       password: event.password
     },
