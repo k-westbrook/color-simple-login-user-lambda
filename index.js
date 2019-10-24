@@ -25,7 +25,7 @@ exports.handler = (event, context, callback) => {
           message: JSON.stringify('ERROR, email and/or password not allowed.')
         }
       };
-      //callback(null, data);
+      callback(null, data);
 
     } else {
 
@@ -43,8 +43,8 @@ exports.handler = (event, context, callback) => {
 
       };
 
-      console.log(data, "SUCCESS")
-      // callback(null, data);
+
+      callback(null, data);
 
     }
   })
