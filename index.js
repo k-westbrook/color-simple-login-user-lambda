@@ -3,14 +3,17 @@ const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({ region: "us-west-1" });
 
 exports.handler = (event, context, callback) => {
-  const params = {
-    ExpressionAttributeValues: {
-      'email': event.email,
-      'password': event.password
-    },
-    TableName: "USER_INFO"
-  };
 
+  const params = {
+    TableName: 'USER_INFO',
+    KeyConditionExpression: "#email = :email",
+    ExpressionAttributeNames: {
+      "#email": "email"
+    },
+    ExpressionAttributeValues: {
+      ":email": event.email
+    }
+  };
   docClient.query(params, function (err, data) {
 
     if (err) {
