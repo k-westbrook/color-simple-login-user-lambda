@@ -14,10 +14,10 @@ exports.handler = (event, context, callback) => {
       ":email": event.email
     }
   };
+
   docClient.query(params, function (err, data) {
 
     let recordReturned = data.Items[0];
-
 
     if (err || (recordReturned.password !== event.password)) {
 
@@ -49,13 +49,8 @@ exports.handler = (event, context, callback) => {
 
       };
 
-
       callback(null, data);
 
     }
   })
-
-
-
-
 };
