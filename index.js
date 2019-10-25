@@ -16,7 +16,10 @@ exports.handler = (event, context, callback) => {
   };
   docClient.query(params, function (err, data) {
 
-    if (err) {
+    let recordReturned = data.Items[0];
+
+
+    if (err || (recordReturned.password !== event.password)) {
 
       data = {
         statusCode: 400,
@@ -41,7 +44,7 @@ exports.handler = (event, context, callback) => {
         body: {
 
           message: JSON.stringify('Successful get.'),
-          user: data.Items[0]
+          user: recordReturned
         }
 
       };
