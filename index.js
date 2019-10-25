@@ -41,7 +41,7 @@ exports.handler = (event, context, callback) => {
         body: {
 
           message: JSON.stringify('Successful get.'),
-          user: params.Item
+          user: params.Items[0]
         }
 
       };
